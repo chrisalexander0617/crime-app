@@ -3,11 +3,20 @@ const express = require('express')
 const path = require("path");
 const app = express()
 const axios = require('axios')
-
+const cors = require('cors')
 const agencyAPI = require('./lib/agencyApi')
 
-app.get('/', async (req, res) => {
-    res.send('Home')
+app.use(cors())
+
+app.get('/', (req, res) => {
+    console.log('someones here')
+    res.sendStatus(200)
+})
+
+app.get('/server-test', (req, res) => {
+    console.log('someones here on server-test')
+    const data = {tets:'te'}
+    res.send(data)
 })
 
 app.get('/agencies/agency', async (req, res) => {
