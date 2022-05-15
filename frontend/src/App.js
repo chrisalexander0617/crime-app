@@ -2,7 +2,6 @@ import logo from './logo.png';
 import './App.css';
 import axios from 'axios'
 import {useEffect, useRef, useState, useCallback} from 'react';
-import {Dashboard} from '../src/components/dashboard/Dashboard'
 import { Link } from "react-router-dom";
 import {Home} from './components/home/Home'
 
@@ -10,8 +9,6 @@ function App() {
   const mounted = useRef(false)
   const [status, setStatus] = useState(null)
 
-  console.log(Dashboard)
-  
   useEffect(() => {
     mounted.current = true
     if(mounted.current){console.log('App mounted')}
@@ -39,7 +36,6 @@ function App() {
     <>
       {status === 200 ?
         <div className="App">
-          <Dashboard />
           <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
               <p>
