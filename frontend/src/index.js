@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import {Home} from './components/pages/home/Home'
+import {Map} from './components/map/Map'
 import reportWebVitals from './reportWebVitals';
 import {
   BrowserRouter,
@@ -24,6 +25,7 @@ root.render(
           </Route> */}
         </Route>
         <Route path="/home" element={<Home />}/>
+        <Route path="/map" element={<Map />}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
