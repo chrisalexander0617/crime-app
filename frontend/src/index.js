@@ -2,12 +2,30 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import {Home} from './components/home/Home'
 import reportWebVitals from './reportWebVitals';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />}>
+         
+          {/* <Route path="teams" element={<Teams />}>
+            <Route path=":teamId" element={<Team />} />
+            <Route path="new" element={<NewTeamForm />} />
+            <Route index element={<LeagueStandings />} />
+          </Route> */}
+        </Route>
+        <Route path="/home" element={<Home />}/>
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

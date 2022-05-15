@@ -3,6 +3,8 @@ import './App.css';
 import axios from 'axios'
 import {useEffect, useRef, useState, useCallback} from 'react';
 import {Dashboard} from '../src/components/dashboard/Dashboard'
+import { Link } from "react-router-dom";
+import {Home} from './components/home/Home'
 
 function App() {
   const mounted = useRef(false)
@@ -53,6 +55,7 @@ function App() {
               </a>
           </header>
         </div>
+     
       : <div>Server Error</div>}
     </>
   );
