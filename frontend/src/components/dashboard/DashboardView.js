@@ -1,5 +1,4 @@
 import {MenuRail} from './MenuRail'
-
 export const DashboardView = () => {
     return (<>
         <div className="dashboard-view">

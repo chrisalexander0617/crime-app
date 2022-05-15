@@ -2,8 +2,7 @@ import logo from './logo.png';
 import './App.css';
 import axios from 'axios'
 import {useEffect, useRef, useState, useCallback} from 'react';
-import { Link } from "react-router-dom";
-import {Home} from './components/home/Home'
+import Button from '@mui/material/Button';
 
 function App() {
   const mounted = useRef(false)
@@ -49,6 +48,8 @@ function App() {
               >
                 <code>Developed by Digyt, LLC </code>
               </a>
+              <Button href="/home" sx={{margin:3}} variant="outlined">Fuck The Meetings</Button>
+              <Button href="/map" sx={{margin:3}} variant="outlined">View Map</Button>
           </header>
         </div>
      
