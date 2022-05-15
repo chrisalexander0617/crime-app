@@ -1,35 +1,36 @@
 import logo from './logo.png';
 import './App.css';
 import axios from 'axios'
-import {useEffect, useRef, useState} from 'react';
+import {useEffect, useRef, useState, useCallback} from 'react';
 
 function App() {
   const mounted = useRef(false)
-  const [serverStatus, setServerStatus] = useState(200)
+  const [status, setStatus] = useState(null)
   
   useEffect(() => {
     mounted.current = true
-    if(mounted.current){
-      console.log('App mounted')
-    }
+    if(mounted.current){console.log('App mounted')}
     return () => mounted.current = false
   })
 
   useEffect(() => {
     const fetchData = async () => {
       console.log('fetchData() - 20')
-        try {
-          const response = await axios.get('http://localhost:8000/server-test')
-          console.log(response.data)
-          
-        } catch(err) { console.log('there was an issue', err)}
-      }
+      try {
+        const response = await axios.get('http://localhost:8000/server-test')
+        updateServerStatus()
+      } catch(err) { console.log('there was an issue', err)}
+    }
     fetchData()
   },[])
 
+  const updateServerStatus = useCallback(async() => {
+    setStatus(200)
+  })
+
   return (
     <>
-      {serverStatus === 200 ?
+      {status === 200 ?
         <div className="App">
           <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
