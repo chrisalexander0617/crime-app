@@ -22,8 +22,10 @@ function App() {
       } catch(err) { console.log('there was an issue', err)}
     }
     fetchData()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const updateServerStatus = useCallback(async() => {
     setStatus(200)
   })
