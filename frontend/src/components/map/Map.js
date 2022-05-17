@@ -12,7 +12,7 @@ export const Map = () => {
     const [lat, setLat] = useState(42.33);
     const [zoom, setZoom] = useState(6);
 
-    const mapImageOne = ''
+    const mapImageOne = 'icons/fraud.png'
     const mapImageTwo = 'https://cdn-icons.flaticon.com/png/512/4628/premium/4628408.png?token=exp=1652832239~hmac=882d59a09b35a45e2840ea3a9b03b83d'
 
     useEffect(() => {
@@ -27,7 +27,7 @@ export const Map = () => {
 
         map.current.on('load', () => {
             map.current.loadImage(
-                '',
+                mapImageOne,
                 (error, image) => {
                     if (error) throw error;
                     map.current.addImage('map-image', image);
