@@ -18,7 +18,7 @@ function App() {
     const fetchData = async () => {
       console.log('fetchData() - 20')
       try {
-        const response = await axios.get('http://localhost:8000/server-test')
+        const response = await axios.get('http://localhost:8080/server-test')
         updateServerStatus()
       } catch(err) { console.log('there was an issue', err)}
     }
