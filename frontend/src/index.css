@@ -13,5 +13,5 @@ code {
 }
 
 .mapboxgl-control-container {
-  display:none
+  /* display:none */
 }
