@@ -11,9 +11,10 @@ export const Map = () => {
     const [lng, setLng] = useState(-83.04);
     const [lat, setLat] = useState(42.33);
     const [zoom, setZoom] = useState(6);
-
+    
+    //https://www.lostcreekdesigns.co/writing/how-to-create-a-map-popup-component-using-mapbox-and-react/
+    const popUpRef = useRef(new mapboxgl.Popup({ offset: 15 }))
     const mapImageOne = 'icons/fraud.png'
-    const mapImageTwo = 'https://cdn-icons.flaticon.com/png/512/4628/premium/4628408.png?token=exp=1652832239~hmac=882d59a09b35a45e2840ea3a9b03b83d'
 
     useEffect(() => {
         map.current = new mapboxgl.Map({
