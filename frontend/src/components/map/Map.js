@@ -1,8 +1,8 @@
 import React, {useEffect, useState, useRef} from "react";
 import 'mapbox-gl/dist/mapbox-gl.css';
-
 import mapboxgl from 'mapbox-gl'; // or "const mapboxgl = require('mapbox-gl');"
-
+import {fraud, murder} from '../../data/crimes'
+import {createDataLayer} from './functions'
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hyaXN0b3BoZXJjbGVtbW9uczIwMjAiLCJhIjoiY2wzN3JtcHowMHNxczNjb3p6cWUzMXVoMSJ9.UnAjwsNqEL0P53xeRrbjUw'
 
 export const Map = () => {
@@ -16,15 +16,13 @@ export const Map = () => {
     const mapImageTwo = 'https://cdn-icons.flaticon.com/png/512/4628/premium/4628408.png?token=exp=1652832239~hmac=882d59a09b35a45e2840ea3a9b03b83d'
 
     useEffect(() => {
-        if(map.current) return 
         map.current = new mapboxgl.Map({
             container: mapContainer.current,
             style: 'mapbox://styles/christopherclemmons2020/cl37v6xlr000u14mlzlfbuc80',
             center: [lng, lat],
             zoom: zoom
         });
-
-
+        map.current.addControl(new mapboxgl.NavigationControl());
         map.current.on('load', () => {
             map.current.loadImage(
                 mapImageOne,
@@ -33,44 +31,10 @@ export const Map = () => {
                     map.current.addImage('map-image', image);
                 }
             );
-            map.current.addSource('point', {
-                'type': 'geojson',
-                'data': {
-                    'type': 'FeatureCollection',
-                    'features': [
-                        {
-                            'type': 'Point',
-                            'properties': {
-                                'message': 'Foo',
-                            },
-                            'geometry': {
-                                'type': 'Point',
-                                'coordinates': [lng, lat]
-                            }
-                        },
-                        {
-                            'type': 'Point',
-                            'properties': {
-                                'message': 'Foo',
-                            },
-                            'geometry': {
-                                'type': 'Point',
-                                'coordinates': [31, 25]
-                            }
-                        }
-                    ]
-                }
-            });
-            map.current.addLayer({
-                'id': 'points',
-                'type': 'symbol',
-                'source': 'point',
-                'layout': {
-                    'icon-image': 'map-image',
-                    'icon-size': 0.05
-                }
-            });   
-            map.addControl(
+            map.current.addLayer(createDataLayer('murder', murder, '#fbb03b')); 
+            map.current.addLayer(createDataLayer('fraud', fraud, '#e55e5e'));
+            
+            map.current.addControl(
                 new mapboxgl.GeolocateControl({
                     positionOptions: {
                         enableHighAccuracy: true
@@ -81,10 +45,12 @@ export const Map = () => {
                     showUserHeading: true
                 })
             );
-            map.current.addControl(new mapboxgl.NavigationControl());
         })
+
+        //cleanup function
+        return () => map.current.remove()
     })
-    
+
     return (
         <>
             <div 
